@@ -24,6 +24,11 @@ pipeline {
             }
         }
     }
+    post {
+        always{
+            slackSend channel: '#jenkins-status', message: "Pipeline Status- ${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}"
+        }
+    }
 }
 
 
