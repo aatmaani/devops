@@ -3,5 +3,5 @@ WORKDIR /usr/src/app
 COPY nodewebsite/* /
 RUN apt update -y
 RUN npm install -y
-EXPOSE 4000
+EXPOSE 3000
 CMD [ "npm","start" ]
