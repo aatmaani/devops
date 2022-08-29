@@ -19,7 +19,8 @@ pipeline {
         }
         stage('Helm chart deploy') {
             steps {
-                sh 'helm upgrade nodejs-dev nodejs -f values-dev.yaml -n dev'
+                sh 'cd charts'
+                sh 'helm install nodejs-dev nodejs -f values-dev.yaml -n dev'
             }
         }
     }
