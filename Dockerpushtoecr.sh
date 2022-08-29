@@ -5,8 +5,8 @@ aws ecr get-login-password --region ap-south-1 | docker login --username AWS --p
 #sudo  docker push 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:v1 
 
 
-docker tag project/nodejs-app:$BUILD_NUMBER 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:devlatest
+docker tag project/nodejs-app:$BUILD_NUMBER 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:latest
 
-docker push 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:devlatest
+docker push 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:latest
 
 
