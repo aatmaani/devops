@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                 git credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
+                git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
             }
         }
         stage('qa staging') {
@@ -14,8 +14,14 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'helm install nodejs-qa nodejs -f values-qa.yaml -n qa'
+                sh 'helm upgrade nodejs-qa nodejs -f values-qa.yaml -n qa'
             }
         }
     }
+    post {
+        always{
+            slackSend channel: '#jenkins-status', message: "Pipeline Status- ${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}"
+        }
+    }
 }
+
