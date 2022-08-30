@@ -2,25 +2,19 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM Checkout') {
+        stage('SCM') {
             steps {
                 git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
             }
         }
-        stage('Build docker image') {
+        stage('qa staging') {
             steps {
-                sh 'sudo docker build -t project/nodejs-app:$BUILD_NUMBER .'
+                sh 'bash qa.sh'
             }
         }
-        stage('push image to ECR') {
+        stage('Deploy') {
             steps {
-                sh 'bash Dockerpushtoecr.sh'
-            }
-        }
-        stage('Helm chart deploy') {
-            steps {
-#                sh 'cd charts'
-                sh 'helm upgrade nodejs-dev nodejs -f values-dev.yaml -n dev'
+                sh 'helm upgrade nodejs-qa nodejs -f values-qa.yaml -n qa'
             }
         }
     }
@@ -30,5 +24,4 @@ pipeline {
         }
     }
 }
-
 
