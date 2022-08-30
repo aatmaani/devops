@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('SCM Checkout') {
             steps {
-                git credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
+                git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
             }
         }
         stage('Build docker image') {
