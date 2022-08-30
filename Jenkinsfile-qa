@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('SCM') {
+            steps {
+                 git credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
+            }
+        }
+        stage('qa staging') {
+            steps {
+                sh 'bash qa.sh'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'helm install nodejs-qa nodejs -f values-qa.yaml -n qa'
+            }
+        }
+    }
+}
