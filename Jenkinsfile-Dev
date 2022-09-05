@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('SCM Checkout') {
             steps {
+                sh 'rm -rf *'
                 git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
             }
         }
