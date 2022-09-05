@@ -5,7 +5,6 @@ pipeline {
         stage('SCM Checkout') {
             steps {
                 git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
-                sh 'sudo git pull origin main'
             }
         }
         stage('Build docker image') {
