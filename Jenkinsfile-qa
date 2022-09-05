@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'helm upgrade nodejs-qa nodejs -f values-qa.yaml -n qa'
+                sh 'helm  upgrade --install nodejs-qa nodejs -f values-qa.yaml -n qa'
             }
         }
     }
