@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Build docker image') {
             steps {
-                sh 'sudo docker build -t project/nodejs-app:$BUILD_NUMBER .'
+                sh 'docker build -t project/nodejs-app:$BUILD_NUMBER .'
             }
         }
         stage('push image to ECR') {
