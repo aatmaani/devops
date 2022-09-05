@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Deploy to Production') {
             steps {
-                sh 'helm install nodejs-prod nodejs -f values-prod.yaml -n prod'
+                sh 'helm upgrade --install nodejs-prod nodejs -f values-prod.yaml -n prod'
             }
         }
     }
