@@ -1,5 +1,6 @@
 #/bin/bash
 #sudo -i
+rm -rf *
 mkdir latestDev
 
 cd latestDev
