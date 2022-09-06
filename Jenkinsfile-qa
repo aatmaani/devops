@@ -2,22 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM') {
+        stage('Dev-v1') {
             steps {
-                git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
-            }
-        }
-        stage('qa staging') {
-            steps {
+                git branch: 'main', url: 'https://github.com/aatmaani/devops.git'
                 sh 'bash qa.sh'
             }
         }
-        stage('Deploy') {
-            steps {
-                sh 'helm  upgrade --install nodejs-qa nodejs -f values-qa.yaml -n qa'
-            }
-        }
     }
+
     post {
         always{
             slackSend channel: '#jenkins-status', message: "Pipeline Status- ${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}"
