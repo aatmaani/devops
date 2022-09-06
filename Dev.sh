@@ -1,9 +1,8 @@
 #/bin/bash
 #sudo -i
-rm -rf *
 mkdir latestDev
-
 cd latestDev
+git pull
 git clone https://github.com/aatmaani/project.git
 
 cd project
