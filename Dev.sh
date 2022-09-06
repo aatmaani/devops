@@ -1,5 +1,6 @@
 #/bin/bash
 #sudo -i
+rm -rf *
 mkdir latestDev
 
 cd latestDev
@@ -16,7 +17,6 @@ docker tag project/nodejs-app:latestDev 215767047920.dkr.ecr.ap-south-1.amazonaw
 
 docker push 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:latestDev
 cd
-cd workspace/123/charts
-
+cd workspace/Dev/charts/
 helm upgrade --install nodejs-dev nodejs -f values-dev.yaml --set image.tag=latestDev -n dev
 
