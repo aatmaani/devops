@@ -1,8 +1,8 @@
 #/bin/bash
 #sudo -i
-#mkdir Dev-v1
+mkdir latestDev
 
-cd Dev-v1
+cd latestDev
 git clone https://github.com/aatmaani/project.git
 
 cd project
