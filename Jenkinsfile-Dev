@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Dev-v1') {
             steps {
-                git branch: 'main', url: 'https://github.com/aatmaani/123.git'
+                git branch: 'main', url: 'https://github.com/aatmaani/devops.git'
                 sh 'bash Dev.sh'
             }
         }
