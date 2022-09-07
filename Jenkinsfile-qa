@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Dev-v1') {
+        stage('QA-v1') {
             steps {
                 git branch: 'main', url: 'https://github.com/aatmaani/devops.git'
                 sh 'bash qa.sh'
