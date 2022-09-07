@@ -2,22 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('SCM') {
+        stage('Prod-v1') {
             steps {
-                git branch: 'main', credentialsId: 'gitnew', url: 'https://github.com/aatmaani/devops.git'
-            }
-        }
-        stage('Prod staging') {
-            steps {
+                git branch: 'main', url: 'https://github.com/aatmaani/devops.git'
                 sh 'bash prod.sh'
             }
         }
-        stage('Deploy to Production') {
-            steps {
-                sh 'helm upgrade --install nodejs-prod nodejs -f values-prod.yaml -n prod'
-            }
-        }
     }
+
     post {
         always{
             slackSend channel: '#jenkins-status', message: "Pipeline Status- ${currentBuild.currentResult} ${env.JOB_NAME} ${env.BUILD_NUMBER} ${env.BUILD_URL}"
