@@ -9,7 +9,7 @@ docker push 215767047920.dkr.ecr.ap-south-1.amazonaws.com/project/nodejs-app:pro
 aws ecr describe-images --repository-name project/nodejs-app
 
 cd
-cd workspace/Dev/charts/
+cd workspace/Prod/charts/
 
 helm upgrade --install nodejs-prod nodejs -f values-prod.yaml --set image.tag=prod-v1 -n prod
 
