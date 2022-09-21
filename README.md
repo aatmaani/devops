@@ -169,7 +169,7 @@ Same Helm chart Template use in the Prod Env Deploy it kubernetes cluster using 
  helm  upgrade --install nodejs-prod nodejs -f values-prod.yaml --set image.tag=latestprod -n Prod
 ```
 
-** Slack Notification**
+**Slack Notification**
 
 When Jenkins Pipeline is Fail send the Notification to the Slack Channel.
 
