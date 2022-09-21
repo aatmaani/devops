@@ -78,7 +78,7 @@ Main Branch is Restricte the branch , main branch is accepte by only Pull Reques
  **Dev Branch**
   Developer push only Dev Branch.
   
-# Phase2 [Infrastucture setup]
+# Phase2 [Infrastructure setup]
   ![](https://raw.githubusercontent.com/aatmaani/123/main/2%20Untitled%20Diagram.drawio.png)
   
   **Pre-Request**
@@ -96,8 +96,11 @@ Main Branch is Restricte the branch , main branch is accepte by only Pull Reques
 # Phase3 [CI/CD]
 
 **Created 3 Environment Pipeline**
+
 **1.Dev**
+
 **2 QA**
+
 **3.Prod**
 
 # DEV-Environment 
