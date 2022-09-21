@@ -54,4 +54,7 @@ EFK stands for Elasticsearch, Fluentd, and Kibana. EFK is a popular and the best
 
 Prometheus is an open source monitoring system for which Grafana provides out-of-the-box support.Grafana to display system metrics for a server monitored by Prometheus.Prometheus node_exporter is a widely used tool that exposes system metrics & hosts you want to monitor.
 
+## _Project interpretation_
+
+![alt text](https://raw.githubusercontent.com/aatmaani/devops/main/Aws%20project.png)
 
