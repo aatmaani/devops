@@ -22,7 +22,7 @@
 
 ![](https://raw.githubusercontent.com/maheshkn400/DevOps/master/img/devops-toolchain.png)
 ## Aatmaani Project 
- Nodejs Project we used in this Project for CI/CD Pipeline 
+ We used Nodejs Project for CI/CD Pipeline 
 ## Tools
 **Git**
   
