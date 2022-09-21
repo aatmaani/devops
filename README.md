@@ -107,5 +107,73 @@ Main Branch is Restricte the branch , main branch is accepte by only Pull Reques
 
 ![](https://raw.githubusercontent.com/aatmaani/123/main/3Untitled%20Diagram.drawio.png)
 
+Entier Pipeline is run in Declarative Pipeline in Jenkins.
+
+**Docker images**
+ Clone the Nodejs project from https://github.com/aatmaani/project.git here
+and there have a Dockerfile to compose the Docker images.
+
+```sh
+git clone https://github.com/aatmaani/project.git
+cd project
+docker build -t project/nodejs-app:latestDev .
+```
+Now Docker image was build with the specific tag.
+
+**ECR**
+
+After Docker build Push to the AWS ECR repo with the Dev latest image.
+
+**Helm**
+
+Created custom Helm chart for the Deploy it in Kubernetes cluster using the Dev Namespace, Created  Dev Values yml file it have 1 replicas, svc Loadbalancer etc.. Customize Helm chart is store in Github Pipeline .
+
+```sh
+helm upgrade --install realese name chart -f valuefile --set image.tag=latestDev -n dev
+``` 
+
+# QA-Environment 
+
+![](https://raw.githubusercontent.com/aatmaani/123/main/4%20Untitled%20Diagram.drawio.png)
+
+**ECR**
+ 
+  Pull the Docker Dev latest image from AWS ECR to locally or QA testing team
+
+**QA**
+ 
+ Pull the dev latest images test it locally & intgerate dependencies. After test it Push to the QA latest image in AWS ECR.
+ 
+ **Helm**
+ 
+ Created custom Helm chart for the Deploy it in Kubernetes cluster using the QA Namespace, Created  QA Values yml file it have 1 replicas, svc Loadbalancer etc.. Customize Helm chart is store in Github Pipeline.
+ 
+ ```sh
+ helm  upgrade --install nodejs-qa nodejs -f values-qa.yaml --set image.tag=latestQA -n qa
+```
+# Prod-Environment 
+
+![](https://raw.githubusercontent.com/aatmaani/123/main/5%20Untitled%20Diagram.drawio.png)
+
+
+ 
+**ECR**
+
+Pull the QA latest image to the local & push to the the AWS ECR in Prod latest.
+
+**Helm**
+
+Same Helm chart Template use in the Prod Env Deploy it kubernetes cluster using Prod Namespace, Created prod values yml files which is enable HPA,Cluster Autoscaler, 2 Replicas. Deploy Monitoring tools in Prod env.
+
+```sh
+ helm  upgrade --install nodejs-prod nodejs -f values-prod.yaml --set image.tag=latestprod -n Prod
+```
+
+** Slack Notification**
+
+When Jenkins Pipeline is Fail send the Notification to the Slack Channel.
+
+# Phase4 [Continuous Monitoring]
+
 
 
