@@ -58,4 +58,51 @@ Prometheus is an open source monitoring system for which Grafana provides out-of
 ## _Project interpretation_
 
 ![alt text](https://raw.githubusercontent.com/aatmaani/devops/main/Aws%20project.png)
+# Phase 1 [Repo]
+![alt text](https://raw.githubusercontent.com/aatmaani/123/main/Untitled%20Diagram.drawio.png)
+
+
+**Git**
+  
+  Developer clone the Aaatmaani Project from http://github.com/aatmaani/project/ This is a Nodejs application. Pipeline work on the http://github/aatmaani/devops/ repo
+  
+**GitHub**
+   
+   Create a 2 Branches 
+   - Main Branch
+   - Dev Branch
+
+**Main Branch**
+Main Branch is Restricte the branch , main branch is accepte by only Pull Request, Developer not commite directly to the main branch, only admin can access the Main Branch. Once Main branch is merge happen automatically trigger to the Jenkins pipeline Through the Webhook Methodology.
+ 
+ **Dev Branch**
+  Developer push only Dev Branch.
+  
+# Phase2 [Infrastucture setup]
+  ![](https://raw.githubusercontent.com/aatmaani/123/main/2%20Untitled%20Diagram.drawio.png)
+  
+  **Pre-Request**
+  - Install Jenkins
+  - Install Terraform
+  - Install Docker
+  - Install Kubectl (Dependent Version)
+  - Create EKS cluster through terraform & connect to the Cluster
+  - Install Helm3
+          - Create 3 Namespace
+             - 1. Dev
+             - 2. QA
+             - 3. Prod
+
+# Phase3 [CI/CD]
+
+**Created 3 Environment Pipeline**
+**1.Dev**
+**2 QA**
+**3.Prod**
+
+# DEV-Environment 
+
+![](https://raw.githubusercontent.com/aatmaani/123/main/3Untitled%20Diagram.drawio.png)
+
+
 
