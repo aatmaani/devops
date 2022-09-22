@@ -254,6 +254,7 @@ Kubernetes dashboard https://grafana.com/grafana/dashboards/7249-kubernetes-clus
 - running pods (cpu, memory etc.)
 
 **Slack Notification**
+ 
 Once the production Environment Metrics reach Threshold > 80 Alertmanager send the Notification to the Slack with the help of slack Webhook integeration to the config channels.
 
 
