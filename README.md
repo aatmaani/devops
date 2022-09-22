@@ -180,5 +180,77 @@ When Jenkins Pipeline is Fail send the Notification to the Slack Channel.
 
 # Phase4 [Continuous Monitoring]
 
+![](https://raw.githubusercontent.com/aatmaani/123/main/6%20Untitled%20Diagram.drawio.png)
+
+**EFK**
+
+Install EFK in Prod Environment using Helm charts below command is how to install & setup is shown.
+*Elasticsearch*
+```sh
+kubectl create ns efk
+helm repo add elastic https://helm.elastic.co
+helm show values elastic/elasticsearch >> elasticsearch.values
+vi elasticsearch.values
+  - Update replicas & Masternode 1 , resource min 2G.
+helm install elasticsearch elastic/elasticsearch -f elasticsearch.values -n efk
+```
+*kibana*
+```sh
+helm show values elastic/kibana >> kibana.values
+vi kibana.values
+  - Replace ClusterIP to LoadBalancer
+helm install kibana elastic/kibana -f kibana.values -n efk
+```
+*Fluentd*
+```sh
+helm repo add fluent https://fluent.github.io/helm-charts
+helm repo update
+helm show values fluent/fluentd >> fluentd.values
+vi fluentd.values
+            - if u want enable Persistant volume
+helm install fluentd fluent/fluentd -n efk
+```
+
+*Default Running ports*
+Port 9200   - Elasticsearch 
+
+Port 5601   - Kibana
+
+port 9100   -  Node Exporter
+
+After installing check svc take Kibana External ip & check it in browser http:xxxxxxxxxxxxxxx:5601 u get the Home pages & check it Prod logs.
+
+**Prometheus & Grafana**
+
+Prometheus collect the metric from Node exporter e.g each nodes,pods,conatiner etc.. utilization is check it.
+
+*Install Prometheus and Grafana on Kubernetes using Helm 3*
+
+```sh
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm search repo prometheus-community
+helm install [RELEASE_NAME(stable)] prometheus-community/kube-prometheus-stack
+kubectl edit svc stable-kube-prometheus-sta-prometheus
+- Here we are changing from ClusterIP to LoadBalancer/NodePort
+kubectl edit svc stable-grafana
+- Change from ClusterIP to LoadBalancer/NodePort
+```
+*Default running port*
+Port 9090 — Prometheus Server
+
+Port 9100 — Prometheus Node Exporter
+
+Port 3000 — Grafana
+
+*Access Prometheus and Grafana WEB Interface*
+http://a9042a504d25f4122b6aa52ed5e53b57-356305290.ap-south-1.elb.amazonaws.com:9090
+
+Kubernetes dashboard https://grafana.com/grafana/dashboards/7249-kubernetes-cluster/ using this port collecting metrics & visualizations.
+- cluster health (pod status count, pod restarts etc.)
+- cluster nodes (cpu, memory, storage etc.)
+- running pods (cpu, memory etc.)
+
+
 
 
