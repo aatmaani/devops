@@ -185,6 +185,7 @@ When Jenkins Pipeline is Fail send the Notification to the Slack Channel.
 **EFK**
 
 Install EFK in Prod Environment using Helm charts below command is how to install & setup is shown.
+
 *Elasticsearch*
 ```sh
 kubectl create ns efk
@@ -250,6 +251,9 @@ Kubernetes dashboard https://grafana.com/grafana/dashboards/7249-kubernetes-clus
 - cluster health (pod status count, pod restarts etc.)
 - cluster nodes (cpu, memory, storage etc.)
 - running pods (cpu, memory etc.)
+
+**Slack Notification**
+Once the production Environment Metrics reach Threshold > 80 Alertmanager send the Notification to the Slack with the help of slack Webhook integeration to the config channels.
 
 
 
