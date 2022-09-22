@@ -238,6 +238,7 @@ kubectl edit svc stable-grafana
 - Change from ClusterIP to LoadBalancer/NodePort
 ```
 *Default running port*
+
 Port 9090 — Prometheus Server
 
 Port 9100 — Prometheus Node Exporter
