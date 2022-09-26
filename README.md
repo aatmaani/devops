@@ -22,7 +22,8 @@
 
 ![](https://raw.githubusercontent.com/maheshkn400/DevOps/master/img/devops-toolchain.png)
 ## Aatmaani Project 
- We used Nodejs Project for CI/CD Pipeline 
+ This is an Express Nodejs Project for CI/CD Pipeline. (Express Nodejs- Express is a node js web application framework that provides broad features for building web and mobile applications. It is used to build a single page, multipage, and hybrid web application. It's a layer built on the top of the Node js that helps manage servers and routes).
+ 
 ## Tools
 **Git**
   
@@ -93,7 +94,7 @@ Main Branch is Restricte the branch , main branch is accepte by only Pull Reques
   - Install Kubectl (Dependent Version)
   - Create EKS cluster through terraform & connect to the Cluster
   - Install Helm3
-          - Create 3 Namespace
+          - Create 3 Namespace inside the cluster
              - 1. Dev
              - 2. QA
              - 3. Prod
@@ -112,11 +113,11 @@ Main Branch is Restricte the branch , main branch is accepte by only Pull Reques
 
 ![](https://raw.githubusercontent.com/aatmaani/123/main/3Untitled%20Diagram.drawio.png)
 
-Entier Pipeline is run in Declarative Pipeline in Jenkins.
+Entier Pipeline is run in *Declarative Pipeline* in Jenkins.
 
 **Docker images**
  Clone the Nodejs project from https://github.com/aatmaani/project.git here
-and there have a Dockerfile to compose the Docker images.
+and there have a Dockerfile & build the Docker images.
 
 ```sh
 git clone https://github.com/aatmaani/project.git
@@ -132,10 +133,12 @@ After Docker build Push to the AWS ECR repo with the Dev latest image.
 **Helm**
 
 Created custom Helm chart for the Deploy it in Kubernetes cluster using the Dev Namespace, Created  Dev Values yml file it have 1 replicas, svc Loadbalancer etc.. Customize Helm chart is store in Github Pipeline .
+Service - LoadBalancer.
 
 ```sh
 helm upgrade --install realese name chart -f valuefile --set image.tag=latestDev -n dev
 ``` 
+After check the SVC it shows external ip copy the URL & past it in Browser web page is running.
 
 # QA-Environment 
 
@@ -152,10 +155,13 @@ helm upgrade --install realese name chart -f valuefile --set image.tag=latestDev
  **Helm**
  
  Created custom Helm chart for the Deploy it in Kubernetes cluster using the QA Namespace, Created  QA Values yml file it have 1 replicas, svc Loadbalancer etc.. Customize Helm chart is store in Github Pipeline.
+ Service - LoadBalancer
  
  ```sh
  helm  upgrade --install nodejs-qa nodejs -f values-qa.yaml --set image.tag=latestQA -n qa
 ```
+After check the SVC it shows external ip copy the URL & past it in Browser web page is running.
+
 # Prod-Environment 
 
 ![](https://raw.githubusercontent.com/aatmaani/123/main/5%20Untitled%20Diagram.drawio.png)
@@ -169,14 +175,16 @@ Pull the QA latest image to the local & push to the the AWS ECR in Prod latest.
 **Helm**
 
 Same Helm chart Template use in the Prod Env Deploy it kubernetes cluster using Prod Namespace, Created prod values yml files which is enable HPA,Cluster Autoscaler, 2 Replicas. Deploy Monitoring tools in Prod env.
+Service - LoadBalancer
 
 ```sh
  helm  upgrade --install nodejs-prod nodejs -f values-prod.yaml --set image.tag=latestprod -n Prod
 ```
+After check the SVC it shows external ip copy the URL & past it in Browser web page is running.
 
 **Slack Notification**
 
-When Jenkins Pipeline is Fail send the Notification to the Slack Channel.
+When Jenkins Pipeline is Fail send the Notification to the Slack Jenkins-status Channel.
 
 # Phase4 [Continuous Monitoring]
 
